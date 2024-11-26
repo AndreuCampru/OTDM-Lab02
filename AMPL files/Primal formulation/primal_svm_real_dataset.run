@@ -1,0 +1,11 @@
+reset;
+model primal_svm.mod;
+data svm_diabetes_data.dat;
+show;
+expand;
+option solver cplex;
+solve;
+# Open a single file for all outputs
+printf {i in N} "w[%d] = %f\n", i, w[i] > "diabetes_results.txt";
+printf "gamma = %f\n", gamma >> "diabetes_results.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "diabetes_results.txt";
