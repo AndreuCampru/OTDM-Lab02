@@ -1,0 +1,16 @@
+# dual_svm.run
+reset;
+
+# Load model and data
+model dual_svm.mod;
+#data dual_svm.dat;
+data "Python Scripts\dual\kernel.dat"
+
+
+# Choose solver
+option solver gurobi;
+# Solve the problem
+solve;
+
+# Display results
+display alpha;
