@@ -1,8 +1,10 @@
 ## SVM problem in primal formulation
 
 # sets
-set N; # set of variables
-set M; # set of points
+# set of variables
+set N; 
+# set of points
+set M; 
 
 
 # parameters

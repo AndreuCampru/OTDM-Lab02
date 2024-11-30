@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 # Preprocess test data file to clean target values
 def preprocess_test_data(test_file, clean_file):
@@ -9,9 +10,9 @@ def preprocess_test_data(test_file, clean_file):
             parts[-1] = parts[-1].replace("*", "")  # Clean the target
             outfile.write(" ".join(parts) + "\n")
 
-# Load test data (features and labels)
 def load_test_data(clean_file):
-    data = np.loadtxt(clean_file)  # Assumes space-separated values
+    # Explicitly specify delimiter as comma
+    data = np.loadtxt(clean_file, delimiter=",")  # Adjust delimiter based on your file format
     X_test = data[:, :-1]  # All columns except the last
     y_test = data[:, -1]   # Last column is the label
     return X_test, y_test
@@ -67,25 +68,60 @@ def load_ampl_results(results_file):
 
 # Main script
 if __name__ == "__main__":
-    # File paths
-    results_file = "original_results.txt"      # File containing weights, gamma, and slack variables
-    test_file = "test_data.csv"       # Original test data file
-    clean_test_file = "clean_test_data.csv"  # Cleaned test data file without "*"
+    # Ask the user which case to run
+    print("Choose the dataset to run:")
+    print("1. Existing datasets (e.g., file_100_test.dat)")
+    print("2. Diabetes dataset (diabetes_test.dat)")
+    choice = input("Enter 1 or 2: ")
 
-    # Preprocess the test data to remove "*" from the target column
-    preprocess_test_data(test_file, clean_test_file)
+    if choice == "1":
+        # Existing datasets
+        test_files = {
+            "100": "file_100_test.dat",
+            "500": "file_500_test.dat",
+            "1000": "file_1000_test.dat",
+            "2000": "file_2000_test.dat",
+        }
 
-    # Load results and cleaned test data
-    w, gamma, s = load_ampl_results(results_file)
-    X_test, y_test = load_test_data(clean_test_file)
+        results_files = [
+            "100_0.1.txt", "100_1.txt", "100_10.txt", "100_100.txt",
+            "500_0.1.txt", "500_1.txt", "500_10.txt", "500_100.txt",
+            "1000_0.1.txt", "1000_1.txt", "1000_10.txt", "1000_100.txt",
+            "2000_0.1.txt", "2000_1.txt", "2000_10.txt", "2000_100.txt",
+        ]
 
-    # print("Weights (w):", w)
-    # print("Bias (gamma):", gamma)
-    # print("Slack variables (s):", s)
+        for results_file in results_files:
+            dataset_size = results_file.split("_")[0]
+            test_file = test_files[dataset_size]
 
-    # Make predictions
-    y_pred = predict(X_test, w, gamma)
+            clean_test_file = f"clean_{test_file}"
+            preprocess_test_data(test_file, clean_test_file)
 
-    # Compute and display accuracy
-    accuracy = compute_accuracy(y_test, y_pred)
-    print(f"Accuracy: {accuracy * 100:.2f}%")
+            w, gamma, s = load_ampl_results(results_file)
+            X_test, y_test = load_test_data(clean_test_file)
+
+            y_pred = predict(X_test, w, gamma)
+
+            accuracy = compute_accuracy(y_test, y_pred)
+            print(f"Results file: {results_file}, Test file: {test_file}, Accuracy: {accuracy * 100:.2f}%")
+
+    elif choice == "2":
+        # Diabetes dataset
+        test_file = "diabetes_test.dat"
+        clean_test_file = "clean_diabetes_test.dat"
+        preprocess_test_data(test_file, clean_test_file)
+
+        results_files = ["diabetes_0.1_results.txt", "diabetes_1_results.txt", 
+                         "diabetes_10_results.txt", "diabetes_100_results.txt"]
+
+        for results_file in results_files:
+            w, gamma, s = load_ampl_results(results_file)
+            X_test, y_test = load_test_data(clean_test_file)
+
+            y_pred = predict(X_test, w, gamma)
+
+            accuracy = compute_accuracy(y_test, y_pred)
+            print(f"Results file: {results_file}, Test file: {test_file}, Accuracy: {accuracy * 100:.2f}%")
+
+    else:
+        print("Invalid choice. Please restart the program and select either 1 or 2.")
