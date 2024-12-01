@@ -4,13 +4,119 @@ reset;
 # Load model and data
 model dual_svm.mod;
 #data dual_svm.dat;
-data "Python Scripts\dual\kernel.dat"
+data "parsed_file_100_train.dat";
+show;
+#expand;
 
 
 # Choose solver
-option solver gurobi;
+option solver cplex;
 # Solve the problem
 solve;
 
-# Display results
-display alpha;
+# Save lambda to a file
+print {i in POINTS} lambda[i] > "lambda_results_100.txt";
+
+
+
+
+
+
+
+
+# dual_svm.run
+reset;
+
+# Load model and data
+model dual_svm.mod;
+#data dual_svm.dat;
+data "parsed_file_500_train.dat";
+show;
+#expand;
+
+
+# Choose solver
+option solver cplex;
+# Solve the problem
+solve;
+
+# Save lambda to a file
+print {i in POINTS} lambda[i] > "lambda_results_500.txt";
+
+
+
+
+
+
+
+
+
+# dual_svm.run
+reset;
+
+# Load model and data
+model dual_svm.mod;
+#data dual_svm.dat;
+data "parsed_file_1000_train.dat";
+show;
+#expand;
+
+
+# Choose solver
+option solver cplex;
+# Solve the problem
+solve;
+
+# Save lambda to a file
+print {i in POINTS} lambda[i] > "lambda_results_1000.txt";
+
+
+
+
+
+
+
+# dual_svm.run
+reset;
+
+# Load model and data
+model dual_svm.mod;
+#data dual_svm.dat;
+data "parsed_file_2000_train.dat";
+show;
+#expand;
+
+
+# Choose solver
+option solver cplex;
+# Solve the problem
+solve;
+
+# Save lambda to a file
+print {i in POINTS} lambda[i] > "lambda_results_2000.txt";
+
+
+
+
+
+
+
+
+# dual_svm.run
+reset;
+
+# Load model and data
+model dual_svm.mod;
+#data dual_svm.dat;
+data "parsed_diabetes_train.dat";
+show;
+#expand;
+
+
+# Choose solver
+option solver cplex;
+# Solve the problem
+solve;
+
+# Save lambda to a file
+print {i in POINTS} lambda[i] > "lambda_results_diabetes.txt";
