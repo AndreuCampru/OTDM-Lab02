@@ -22,5 +22,5 @@ s.t. Equality_Constraint:
 
 # Upper bound constraint on lambda
 
-param nu > 0;  
+param nu := 0.1;  
 s.t. Upper_Bound {i in POINTS}: lambda[i] <= nu;
