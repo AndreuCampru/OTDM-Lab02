@@ -1,11 +1,143 @@
 reset;
 model primal_svm.mod;
-data svm_data.dat;
-show;
-expand;
+data provided_dataset_file_100_train_nu_0.1.dat;
 option solver cplex;
 solve;
-# Open a single file for all outputs
-printf {i in N} "w[%d] = %f\n", i, w[i] > "original_results.txt";
-printf "gamma = %f\n", gamma >> "original_results.txt";
-printf {i in M} "s[%d] = %f\n", i, s[i] >> "original_results.txt";
+printf {i in N} "w[%d] = %f\n", i, w[i] > "100_0.1.txt";
+printf "gamma = %f\n", gamma >> "100_0.1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "100_0.1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_100_train_nu_1.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "100_1.txt";
+printf "gamma = %f\n", gamma >> "100_1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "100_1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_100_train_nu_10.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "100_10.txt";
+printf "gamma = %f\n", gamma >> "100_10.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "100_10.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_100_train_nu_100.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "100_100.txt";
+printf "gamma = %f\n", gamma >> "100_100.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "100_100.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_500_train_nu_0.1.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "500_0.1.txt";
+printf "gamma = %f\n", gamma >> "500_0.1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "500_0.1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_500_train_nu_1.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "500_1.txt";
+printf "gamma = %f\n", gamma >> "500_1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "500_1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_500_train_nu_10.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "500_10.txt";
+printf "gamma = %f\n", gamma >> "500_10.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "500_10.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_500_train_nu_100.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "500_100.txt";
+printf "gamma = %f\n", gamma >> "500_100.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "500_100.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_1000_train_nu_0.1.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "1000_0.1.txt";
+printf "gamma = %f\n", gamma >> "1000_0.1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "1000_0.1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_1000_train_nu_1.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "1000_1.txt";
+printf "gamma = %f\n", gamma >> "1000_1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "1000_1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_1000_train_nu_10.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "1000_10.txt";
+printf "gamma = %f\n", gamma >> "1000_10.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "1000_10.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_1000_train_nu_100.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "1000_100.txt";
+printf "gamma = %f\n", gamma >> "1000_100.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "1000_100.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_2000_train_nu_0.1.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "2000_0.1.txt";
+printf "gamma = %f\n", gamma >> "2000_0.1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "2000_0.1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_2000_train_nu_1.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "2000_1.txt";
+printf "gamma = %f\n", gamma >> "2000_1.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "2000_1.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_2000_train_nu_10.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "2000_10.txt";
+printf "gamma = %f\n", gamma >> "2000_10.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "2000_10.txt";
+
+reset;
+model primal_svm.mod;
+data provided_dataset_file_2000_train_nu_100.dat;
+option solver cplex;
+solve;
+printf {i in N} "w[%d] = %f\n", i, w[i] > "2000_100.txt";
+printf "gamma = %f\n", gamma >> "2000_100.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "2000_100.txt";

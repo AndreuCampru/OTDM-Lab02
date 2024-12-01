@@ -1,11 +1,41 @@
 reset;
 model primal_svm.mod;
-data svm_diabetes_data.dat;
-show;
-expand;
+data diabetes_train_nu_0.1.dat;
 option solver cplex;
 solve;
 # Open a single file for all outputs
-printf {i in N} "w[%d] = %f\n", i, w[i] > "diabetes_results.txt";
-printf "gamma = %f\n", gamma >> "diabetes_results.txt";
-printf {i in M} "s[%d] = %f\n", i, s[i] >> "diabetes_results.txt";
+printf {i in N} "w[%d] = %f\n", i, w[i] > "diabetes_0.1_results.txt";
+printf "gamma = %f\n", gamma >> "diabetes_0.1_results.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "diabetes_0.1_results.txt";
+
+
+reset;
+model primal_svm.mod;
+data diabetes_train_nu_1.dat;
+option solver cplex;
+solve;
+# Open a single file for all outputs
+printf {i in N} "w[%d] = %f\n", i, w[i] > "diabetes_1_results.txt";
+printf "gamma = %f\n", gamma >> "diabetes_1_results.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "diabetes_1_results.txt";
+
+
+reset;
+model primal_svm.mod;
+data diabetes_train_nu_10.dat;
+option solver cplex;
+solve;
+# Open a single file for all outputs
+printf {i in N} "w[%d] = %f\n", i, w[i] > "diabetes_10_results.txt";
+printf "gamma = %f\n", gamma >> "diabetes_10_results.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "diabetes_10_results.txt";
+
+reset;
+model primal_svm.mod;
+data diabetes_train_nu_100.dat;
+option solver cplex;
+solve;
+# Open a single file for all outputs
+printf {i in N} "w[%d] = %f\n", i, w[i] > "diabetes_100_results.txt";
+printf "gamma = %f\n", gamma >> "diabetes_100_results.txt";
+printf {i in M} "s[%d] = %f\n", i, s[i] >> "diabetes_100_results.txt";
